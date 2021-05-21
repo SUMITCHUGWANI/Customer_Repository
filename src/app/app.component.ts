@@ -13,6 +13,11 @@ interface Type {
     name: string;
     code: string;
 }
+
+interface Customer{
+    name: string;
+    code: string;
+}
 interface License {
     type?: Type;
     trial_days?: number;
@@ -21,6 +26,7 @@ interface License {
     MsSQL_EC2_count?: number;
     MySQL_EC2_count?: number;
     expiry_date?: string;
+    customer?: string;
 }
 
 @Component({
@@ -49,6 +55,7 @@ export class AppComponent {
     submitted: boolean;
     private display: boolean;
     type: Type[];
+    customer: Customer[];
     // projectForm: FormGroup;
     // minProjectDate = new Date();
 
@@ -70,6 +77,10 @@ export class AppComponent {
             {name: 'Advanced', code: 'ADV'},
             {name: 'Enterprise', code: 'ENT'},
             {name: 'Enterprise Plus', code: 'ENTP'}];
+
+        this.customer = [{name: 'ABC', code: 'abc'},
+            {name: 'DEF', code: 'def'},
+            {name: 'GHI', code: 'ghi'}];
 
         // tslint:disable-next-line:max-line-length
         this.license = {MsSQL_EC2_count: 0, MySQL_EC2_count: 0, expiry_date: '', machine_count: 0,
@@ -134,6 +145,7 @@ export class AppComponent {
 
     hideLicense() {
         this.submitted = false;
+        this.display = false;
     }
 
     saveProduct() {
